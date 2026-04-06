@@ -46,9 +46,15 @@ export default function BuidlersWeb() {
     <div className="min-h-screen bg-[#10100F] text-[#FFFEF0] font-sans selection:bg-[#F1E65D] selection:text-[#10100F] flex flex-col md:flex-row overflow-hidden">
       {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} totalDurationMs={5000} />}
 
-      <Sidebar view={view} onViewChange={handleViewChange} />
+      <div className={`transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${showSplash ? "opacity-0" : "opacity-100"}`}>
+        <Sidebar view={view} onViewChange={handleViewChange} />
+      </div>
 
-      <main className="flex-1 md:ml-[220px] h-screen overflow-y-auto">
+      <main
+        className={`flex-1 md:ml-[220px] h-screen overflow-y-auto transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          showSplash ? "opacity-0" : "opacity-100"
+        }`}
+      >
         <div className="p-6 md:p-12 md:max-w-7xl mx-auto min-h-full">
           <div className="md:hidden flex justify-between items-end mb-8 border-b border-[#484736] pb-4">
             <div>
@@ -73,7 +79,9 @@ export default function BuidlersWeb() {
         </div>
       </main>
 
-      <MobileNav view={view} onViewChange={handleViewChange} />
+      <div className={`transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${showSplash ? "opacity-0" : "opacity-100"}`}>
+        <MobileNav view={view} onViewChange={handleViewChange} />
+      </div>
     </div>
   );
 }

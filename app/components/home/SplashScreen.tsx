@@ -14,6 +14,8 @@ export function SplashScreen({
   totalDurationMs = 5000,
 }: SplashScreenProps) {
   const [typedCount, setTypedCount] = useState(0);
+  const [isExiting, setIsExiting] = useState(false);
+  const exitDurationMs = 500;
 
   const typingIntervalMs = useMemo(() => {
     const targetTypingWindow = 2800;
@@ -31,10 +33,15 @@ export function SplashScreen({
       });
     }, typingIntervalMs);
 
+    const exitTimer = setTimeout(() => {
+      setIsExiting(true);
+    }, Math.max(0, totalDurationMs - exitDurationMs));
+
     const completeTimer = setTimeout(onComplete, totalDurationMs);
 
     return () => {
       clearInterval(typeTimer);
+      clearTimeout(exitTimer);
       clearTimeout(completeTimer);
     };
   }, [brand.length, onComplete, totalDurationMs, typingIntervalMs]);
@@ -42,8 +49,12 @@ export function SplashScreen({
   const visibleText = brand.slice(0, typedCount);
 
   return (
-    <div className="fixed inset-0 z-[100] bg-[#10100F] text-[#FFFEF0] flex items-center justify-center px-6">
-      <div className="text-center">
+    <div
+      className={`fixed inset-0 z-[100] bg-[#10100F] text-[#FFFEF0] flex items-center justify-center px-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        isExiting ? "opacity-0 scale-[1.015] blur-[2px]" : "opacity-100 scale-100 blur-0"
+      }`}
+    >
+      <div className={`text-center transition-transform duration-500 ${isExiting ? "translate-y-2" : "translate-y-0"}`}>
         <div className="relative inline-block text-left">
           <h1 className="font-mono text-5xl sm:text-6xl md:text-8xl text-[#F1E65D] leading-none whitespace-pre">
             <span className="invisible">
