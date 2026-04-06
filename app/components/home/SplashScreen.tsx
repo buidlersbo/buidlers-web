@@ -46,19 +46,26 @@ export function SplashScreen({
       <div className="text-center">
         <p className="font-mono text-xs md:text-sm text-[#9D9A72] mb-6">boot sequence :: startup_terminal</p>
 
-        <div className="inline-flex items-end gap-2 md:gap-3">
-          <h1 className="font-mono text-5xl sm:text-6xl md:text-8xl tracking-tight text-[#F1E65D] leading-none min-w-[8ch] text-left">
-            {visibleText}
+        <div className="relative inline-block text-left">
+          <h1 className="font-mono text-5xl sm:text-6xl md:text-8xl text-[#F1E65D] leading-none whitespace-pre">
+            <span className="invisible">
+              {brand}
+              █
+            </span>
           </h1>
-          <span className="terminal-block mb-1 md:mb-2" aria-hidden="true" />
+
+          <h1 className="absolute inset-0 font-mono text-5xl sm:text-6xl md:text-8xl text-[#F1E65D] leading-none whitespace-pre pointer-events-none">
+            {visibleText}
+            <span className="terminal-char" aria-hidden="true">
+              █
+            </span>
+          </h1>
         </div>
       </div>
 
       <style jsx>{`
-        .terminal-block {
-          width: 0.58em;
-          height: 0.9em;
-          background: #f1e65d;
+        .terminal-char {
+          display: inline;
           animation: terminal-blink 0.8s steps(1, end) infinite;
         }
 
