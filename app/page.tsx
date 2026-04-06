@@ -37,6 +37,7 @@ function ViewRenderer({
 export default function BuidlersWeb() {
   const [view, setView] = useState<ViewId>("inicio");
   const [showSplash, setShowSplash] = useState(true);
+  const [isSplashExiting, setIsSplashExiting] = useState(false);
 
   const handleViewChange = (nextView: ViewId) => {
     setView(nextView);
@@ -44,15 +45,29 @@ export default function BuidlersWeb() {
 
   return (
     <div className="min-h-screen bg-[#10100F] text-[#FFFEF0] font-sans selection:bg-[#F1E65D] selection:text-[#10100F] flex flex-col md:flex-row overflow-hidden">
-      {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} totalDurationMs={5000} />}
+      {showSplash && (
+        <SplashScreen
+          onExitStart={() => setIsSplashExiting(true)}
+          onComplete={() => {
+            setShowSplash(false);
+            setIsSplashExiting(false);
+          }}
+          totalDurationMs={5000}
+          exitDurationMs={700}
+        />
+      )}
 
-      <div className={`transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${showSplash ? "opacity-0" : "opacity-100"}`}>
+      <div
+        className={`transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          showSplash && !isSplashExiting ? "opacity-0" : "opacity-100"
+        }`}
+      >
         <Sidebar view={view} onViewChange={handleViewChange} />
       </div>
 
       <main
-        className={`flex-1 md:ml-[220px] h-screen overflow-y-auto transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          showSplash ? "opacity-0" : "opacity-100"
+        className={`flex-1 md:ml-[220px] h-screen overflow-y-auto transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          showSplash && !isSplashExiting ? "opacity-0" : "opacity-100"
         }`}
       >
         <div className="p-6 md:p-12 md:max-w-7xl mx-auto min-h-full">
@@ -79,7 +94,11 @@ export default function BuidlersWeb() {
         </div>
       </main>
 
-      <div className={`transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${showSplash ? "opacity-0" : "opacity-100"}`}>
+      <div
+        className={`transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          showSplash && !isSplashExiting ? "opacity-0" : "opacity-100"
+        }`}
+      >
         <MobileNav view={view} onViewChange={handleViewChange} />
       </div>
     </div>
