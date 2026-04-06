@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EquipoView } from "./components/home/EquipoView";
 import { EventosView } from "./components/home/EventosView";
 import { InicioView } from "./components/home/InicioView";
@@ -36,16 +36,34 @@ function ViewRenderer({
 
 export default function BuidlersWeb() {
   const [view, setView] = useState<ViewId>("inicio");
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
+  const [navigationChecked, setNavigationChecked] = useState(false);
   const [isSplashExiting, setIsSplashExiting] = useState(false);
+
+  useEffect(() => {
+    const splashSessionKey = "buidlers_splash_seen";
+    const splashAlreadySeen = sessionStorage.getItem(splashSessionKey) === "1";
+
+    if (splashAlreadySeen) {
+      setShowSplash(false);
+      setNavigationChecked(true);
+      return;
+    }
+
+    sessionStorage.setItem(splashSessionKey, "1");
+    setShowSplash(true);
+    setNavigationChecked(true);
+  }, []);
 
   const handleViewChange = (nextView: ViewId) => {
     setView(nextView);
   };
 
+  const splashBlocksContent = !navigationChecked || (showSplash && !isSplashExiting);
+
   return (
     <div className="min-h-screen bg-[#10100F] text-[#FFFEF0] font-sans selection:bg-[#F1E65D] selection:text-[#10100F] flex flex-col md:flex-row overflow-hidden">
-      {showSplash && (
+      {showSplash && navigationChecked && (
         <SplashScreen
           onExitStart={() => setIsSplashExiting(true)}
           onComplete={() => {
@@ -59,7 +77,7 @@ export default function BuidlersWeb() {
 
       <div
         className={`transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          showSplash && !isSplashExiting ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
+          splashBlocksContent ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
         }`}
       >
         <Sidebar view={view} onViewChange={handleViewChange} />
@@ -67,7 +85,7 @@ export default function BuidlersWeb() {
 
       <main
         className={`flex-1 md:ml-[220px] h-screen overflow-y-auto transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          showSplash && !isSplashExiting ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
+          splashBlocksContent ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
         }`}
       >
         <div className="p-6 md:p-12 md:max-w-7xl mx-auto min-h-full">
@@ -96,7 +114,7 @@ export default function BuidlersWeb() {
 
       <div
         className={`transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          showSplash && !isSplashExiting ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
+          splashBlocksContent ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
         }`}
       >
         <MobileNav view={view} onViewChange={handleViewChange} />
