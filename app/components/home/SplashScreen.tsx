@@ -44,8 +44,6 @@ export function SplashScreen({
   return (
     <div className="fixed inset-0 z-[100] bg-[#10100F] text-[#FFFEF0] flex items-center justify-center px-6">
       <div className="text-center">
-        <p className="font-mono text-xs md:text-sm text-[#9D9A72] mb-6">boot sequence :: startup_terminal</p>
-
         <div className="relative inline-block text-left">
           <h1 className="font-mono text-5xl sm:text-6xl md:text-8xl text-[#F1E65D] leading-none whitespace-pre">
             <span className="invisible">
