@@ -10,14 +10,16 @@ export function RedesView() {
       </div>
 
       <div className="grid gap-4">
-        {SOCIAL_LINKS.map((network, i) => (
+        {SOCIAL_LINKS.map((network) => (
           <a
-            key={i}
-            href="#"
+            key={network.href}
+            href={network.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center justify-between p-5 border border-[#484736] hover:bg-[#F1E65D] hover:text-[#10100F] hover:border-[#F1E65D] group transition-all duration-200"
           >
             <div className="flex items-center gap-3">
-              <span className="font-mono text-sm md:text-lg group-hover:font-bold">{network}_link;</span>
+              <span className="font-mono text-sm md:text-lg group-hover:font-bold">{network.label}_link;</span>
             </div>
             <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </a>

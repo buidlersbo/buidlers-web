@@ -90,6 +90,15 @@ export const NAV_ITEMS = [
   { id: "eventos", label: "eventos", icon: Calendar },
 ] as const;
 
-export const SOCIAL_LINKS = ["twitter / x", "discord_server", "github_repo", "linkedin_profile"];
+export const SOCIAL_LINKS = [
+  { label: "twitter / x", href: "https://x.com/Buidlersbo" },
+  { label: "discord", href: "https://discord.gg/SDSDSDSDSD" },
+  { label: "github", href: "https://github.com/buidlersbo" },
+  { label: "linkedin profile", href: "https://www.linkedin.com/company/buidlers-bolivia/" },
+  { label: "whatsapp", href: "https://chat.whatsapp.com/LQhkv0R2fGa4FDwYuUE443" },
+  { label: "tiktok", href: "https://www.tiktok.com/@buidlersbo" },
+  { label: "instagram", href: "https://www.instagram.com/buidlersbo/" },
+  { label: "facebook", href: "https://www.facebook.com/BuidlersBolivia/" },
+] as const;
 
 export type ViewId = (typeof NAV_ITEMS)[number]["id"];
