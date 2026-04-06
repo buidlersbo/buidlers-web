@@ -15,7 +15,7 @@ export function SplashScreen({
   onExitStart,
   brand = "buidlers",
   totalDurationMs = 5000,
-  exitDurationMs = 700,
+  exitDurationMs = 800,
 }: SplashScreenProps) {
   const [typedCount, setTypedCount] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
@@ -55,7 +55,7 @@ export function SplashScreen({
   return (
     <div
       className={`fixed inset-0 z-[100] bg-[#10100F] text-[#FFFEF0] flex items-center justify-center px-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        isExiting ? "opacity-0 scale-[1.015] blur-[2px]" : "opacity-100 scale-100 blur-0"
+        isExiting ? "opacity-0 scale-[1.01] blur-[1px]" : "opacity-100 scale-100 blur-0"
       }`}
       style={{ transitionDuration: `${exitDurationMs}ms` }}
     >

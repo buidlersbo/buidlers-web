@@ -53,21 +53,21 @@ export default function BuidlersWeb() {
             setIsSplashExiting(false);
           }}
           totalDurationMs={5000}
-          exitDurationMs={700}
+          exitDurationMs={800}
         />
       )}
 
       <div
-        className={`transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          showSplash && !isSplashExiting ? "opacity-0" : "opacity-100"
+        className={`transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          showSplash && !isSplashExiting ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
         }`}
       >
         <Sidebar view={view} onViewChange={handleViewChange} />
       </div>
 
       <main
-        className={`flex-1 md:ml-[220px] h-screen overflow-y-auto transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          showSplash && !isSplashExiting ? "opacity-0" : "opacity-100"
+        className={`flex-1 md:ml-[220px] h-screen overflow-y-auto transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          showSplash && !isSplashExiting ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
         }`}
       >
         <div className="p-6 md:p-12 md:max-w-7xl mx-auto min-h-full">
@@ -95,8 +95,8 @@ export default function BuidlersWeb() {
       </main>
 
       <div
-        className={`transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          showSplash && !isSplashExiting ? "opacity-0" : "opacity-100"
+        className={`transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          showSplash && !isSplashExiting ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
         }`}
       >
         <MobileNav view={view} onViewChange={handleViewChange} />
