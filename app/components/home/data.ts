@@ -27,6 +27,7 @@ export const EVENTS_DATA = [
     date: "2025-09-20 18:00",
     status: "DONE",
     loc: "buidlers_hub",
+    lumaUrl: "https://lu.ma/hackathon-pixel-operator",
     logs: [
       "INFO: 48h de build (Web3 + IA);",
       "OUTPUT: seeds, mentorías y acceso a infra;",
@@ -37,6 +38,7 @@ export const EVENTS_DATA = [
     date: "2025-12-21 16:30",
     status: "UPCOMING",
     loc: "condominio sky elite",
+    lumaUrl: "https://lu.ma/cena-buidlers-2025",
     logs: [
       "INFO: agradecer a cada voluntario y al core team;",
       "INFO2: cerrar el año, compartir y celebrar lo logrado;",
@@ -92,7 +94,6 @@ export const NAV_ITEMS = [
 
 export const SOCIAL_LINKS = [
   { label: "twitter / x", href: "https://x.com/Buidlersbo" },
-  { label: "discord", href: "https://discord.gg/SDSDSDSDSD" },
   { label: "github", href: "https://github.com/buidlersbo" },
   { label: "linkedin profile", href: "https://www.linkedin.com/company/buidlers-bolivia/" },
   { label: "whatsapp", href: "https://chat.whatsapp.com/LQhkv0R2fGa4FDwYuUE443" },
