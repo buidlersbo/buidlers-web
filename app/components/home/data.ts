@@ -1,4 +1,4 @@
-import { Calendar, Globe, Hash, Terminal, Users } from "lucide-react";
+import { Calendar, Globe, Hash, Terminal, Trophy, Users } from "lucide-react";
 
 export const COLORS = {
   bg: "#10100F",
@@ -47,6 +47,39 @@ export const EVENTS_DATA = [
   },
 ] as const;
 
+export const HACKATHONS_DATA = [
+  {
+    name: "ai agents sprint",
+    daysLeft: 55,
+    image: "/hackathon-ai.svg",
+    location: "virtual",
+    sponsor: "near + openai builders",
+    prizePool: "$25,000",
+    status: "ONGOING",
+    applyUrl: "https://dorahacks.io/hackathon",
+  },
+  {
+    name: "zk rollup challenge",
+    daysLeft: 32,
+    image: "/hackathon-zk.svg",
+    location: "irl",
+    sponsor: "ethereum bolivia",
+    prizePool: "$15,000",
+    status: "ONGOING",
+    applyUrl: "https://dorahacks.io/hackathon",
+  },
+  {
+    name: "multi-chain infra jam",
+    daysLeft: 0,
+    image: "/hackathon-ai.svg",
+    location: "virtual",
+    sponsor: "buidlers infra",
+    prizePool: "$10,000",
+    status: "ENDED",
+    applyUrl: "https://dorahacks.io/hackathon",
+  },
+] as const;
+
 export const TEAM_DATA = {
   ceo: {
     name: "ana_dev",
@@ -90,6 +123,7 @@ export const NAV_ITEMS = [
   { id: "equipo", label: "equipo", icon: Users },
   { id: "redes", label: "redes", icon: Globe },
   { id: "eventos", label: "eventos", icon: Calendar },
+  { id: "hackathons", label: "hackathons", icon: Trophy },
 ] as const;
 
 export const SOCIAL_LINKS = [

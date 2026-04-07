@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { EquipoView } from "./components/home/EquipoView";
 import { EventosView } from "./components/home/EventosView";
+import { HackathonsView } from "./components/home/HackathonsView";
 import { InicioView } from "./components/home/InicioView";
 import { MobileNav } from "./components/home/MobileNav";
 import { RankingView } from "./components/home/RankingView";
@@ -29,6 +30,8 @@ function ViewRenderer({
       return <RedesView />;
     case "eventos":
       return <EventosView />;
+    case "hackathons":
+      return <HackathonsView />;
     default:
       return <div className="p-10 font-mono text-[#F1E65D]">./module_under_construction...</div>;
   }

@@ -1,0 +1,14 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#11110F"/>
+      <stop offset="1" stop-color="#1F1E14"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect x="74" y="74" width="1052" height="527" rx="20" stroke="#F1E65D" stroke-width="4" opacity="0.6"/>
+  <text x="110" y="190" fill="#F1E65D" font-family="monospace" font-size="52" font-weight="700">AI AGENTS HACK</text>
+  <text x="110" y="270" fill="#FFFEF0" font-family="monospace" font-size="34">Build autonomous tools for web3 ecosystems</text>
+  <text x="110" y="360" fill="#9D9A72" font-family="monospace" font-size="28">ONGOING</text>
+  <text x="110" y="420" fill="#9D9A72" font-family="monospace" font-size="28">VIRTUAL</text>
+</svg>

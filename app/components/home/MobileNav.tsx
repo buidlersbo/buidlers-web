@@ -7,7 +7,7 @@ type MobileNavProps = {
 
 export function MobileNav({ view, onViewChange }: MobileNavProps) {
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 w-full bg-[#10100F] border-t border-[#484736] z-50 grid grid-cols-5 h-16">
+    <nav className="md:hidden fixed bottom-0 left-0 w-full bg-[#10100F] border-t border-[#484736] z-50 grid grid-cols-6 h-16">
       {NAV_ITEMS.map((item) => (
         <button
           key={item.id}
