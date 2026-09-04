@@ -1,21 +1,20 @@
 @import "tailwindcss";
 
+/* Tailwind v4 no lee tailwind.config.js salvo que se lo indiquemos. */
+@config "../tailwind.config.js";
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --background: #10100f;
+  --foreground: #fffef0;
 }
 
-/* @theme inline removed to use tailwind.config.js */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }

@@ -1,11 +1,15 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
-import { COLORS, VALUES } from "./data";
+import { COLORS } from "@/lib/theme";
+import type { SiteValue } from "@/lib/types";
 
 type InicioViewProps = {
+  values: SiteValue[];
   onJoinClick: () => void;
 };
 
-export function InicioView({ onJoinClick }: InicioViewProps) {
+export function InicioView({ values, onJoinClick }: InicioViewProps) {
   return (
     <div className="animate-in fade-in duration-700 space-y-12">
       <div className="border-l-4 border-[#F1E65D] pl-6 py-4 md:py-8 max-w-4xl">
@@ -16,19 +20,19 @@ export function InicioView({ onJoinClick }: InicioViewProps) {
           donde se quema lo anterior.
         </h1>
         <div className="font-mono text-sm md:text-base space-y-1">
-          <p style={{ color: COLORS.syntax.orange }}>echo "construimos herramientas que empoderan";</p>
+          <p style={{ color: COLORS.syntax.orange }}>echo &quot;construimos herramientas que empoderan&quot;;</p>
           <p style={{ color: COLORS.corn }}>web3 + ia // privacidad == derecho;</p>
         </div>
         <p className="font-mono text-xs md:text-sm text-[#9D9A72] mt-2">&#125;</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl">
-        {VALUES.map((val, i) => (
-          <div key={i} className="border border-[#484736] p-5 hover:bg-[#161616] transition-colors group">
+        {values.map((value) => (
+          <div key={value.id} className="border border-[#484736] p-5 hover:bg-[#161616] transition-colors group">
             <h3 className="font-mono text-[#F1E65D] text-sm uppercase mb-2 group-hover:underline decoration-1 underline-offset-4">
-              var {val.term} =
+              var {value.term} =
             </h3>
-            <p className="font-sans text-[#FFFEF0] text-lg leading-snug">"{val.def}"</p>
+            <p className="font-sans text-[#FFFEF0] text-lg leading-snug">&quot;{value.definition}&quot;</p>
           </div>
         ))}
       </div>

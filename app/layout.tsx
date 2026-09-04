@@ -12,18 +12,10 @@ export const metadata: Metadata = {
   description: "Construimos herramientas que empoderan a las personas.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es">
-      <body
-        className={`${inter.variable} antialiased bg-buidlers-black text-buidlers-text`}
-      >
-        {children}
-      </body>
+      <body className={`${inter.variable} antialiased bg-buidlers-black text-buidlers-text`}>{children}</body>
     </html>
   );
 }

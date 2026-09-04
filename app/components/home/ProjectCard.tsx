@@ -3,7 +3,7 @@ import { Heart } from "lucide-react";
 type ProjectCardProps = {
   name: string;
   desc: string;
-  likes: string;
+  likes: number;
 };
 
 export function ProjectCard({ name, desc, likes }: ProjectCardProps) {

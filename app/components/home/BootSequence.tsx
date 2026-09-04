@@ -1,35 +1,35 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { COLORS } from "./data";
+import { COLORS } from "@/lib/theme";
 
+const SCRIPT = [
+  { text: "# systems check...", color: COLORS.artichoke },
+  { text: "STATUS: centralized control [!]", color: COLORS.syntax.red },
+  { text: "ACTION: run decentralize_now.sh", color: COLORS.syntax.orange },
+  { text: "loading modules...", color: COLORS.artichoke },
+  { text: "OUTPUT: autonomy restored;", color: COLORS.syntax.green },
+  { text: "function empower() { return (knowledge + collaboration); }", color: COLORS.ivory },
+  { text: "echo 'Build with us -> Buidlers.world';", color: COLORS.corn },
+] as const;
 type BootSequenceProps = {
   onComplete: () => void;
 };
 
 export function BootSequence({ onComplete }: BootSequenceProps) {
   const [lines, setLines] = useState<{ text: string; color: string }[]>([]);
-  const script = [
-    { text: "# systems check...", color: COLORS.artichoke },
-    { text: "STATUS: centralized control [!]", color: COLORS.syntax.red },
-    { text: "ACTION: run decentralize_now.sh", color: COLORS.syntax.orange },
-    { text: "loading modules...", color: COLORS.artichoke },
-    { text: "OUTPUT: autonomy restored;", color: COLORS.syntax.green },
-    { text: "function empower() { return (knowledge + collaboration); }", color: COLORS.ivory },
-    { text: "echo 'Build with us -> Buidlers.world';", color: COLORS.corn },
-  ];
 
   useEffect(() => {
-    let delay = 0;
-    script.forEach((line, index) => {
-      delay += 600;
-      setTimeout(() => {
-        setLines((prev) => [...prev, line]);
-        if (index === script.length - 1) {
-          setTimeout(onComplete, 800);
-        }
-      }, delay);
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    SCRIPT.forEach((line, index) => {
+      timers.push(
+        setTimeout(() => {
+          setLines((prev) => [...prev, line]);
+          if (index === SCRIPT.length - 1) timers.push(setTimeout(onComplete, 800));
+        }, (index + 1) * 600)
+      );
     });
+    return () => timers.forEach(clearTimeout);
   }, [onComplete]);
 
   return (

@@ -1,7 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
-import { SOCIAL_LINKS } from "./data";
+import type { SocialLink } from "@/lib/types";
 
-export function RedesView() {
+type RedesViewProps = {
+  socials: SocialLink[];
+};
+
+export function RedesView({ socials }: RedesViewProps) {
   return (
     <div className="max-w-3xl h-full flex flex-col justify-center">
       <div className="mb-8 border-b border-[#484736] pb-4">
@@ -10,9 +14,9 @@ export function RedesView() {
       </div>
 
       <div className="grid gap-4">
-        {SOCIAL_LINKS.map((network) => (
+        {socials.map((network) => (
           <a
-            key={network.href}
+            key={network.id}
             href={network.href}
             target="_blank"
             rel="noopener noreferrer"

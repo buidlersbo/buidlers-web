@@ -1,4 +1,4 @@
-import { NAV_ITEMS, ViewId } from "./data";
+import { NAV_ITEMS, ViewId } from "@/lib/nav";
 
 type SidebarProps = {
   view: ViewId;

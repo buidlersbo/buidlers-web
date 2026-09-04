@@ -1,13 +1,16 @@
-"use client";
-
-import { useMemo } from "react";
 import { MapPin } from "lucide-react";
-import { HACKATHONS_DATA } from "./data";
+import { daysUntil } from "@/lib/dates";
+import type { Hackathon } from "@/lib/types";
 
-export function HackathonsView() {
-  const ongoingHackathons = useMemo(() => {
-    return HACKATHONS_DATA.filter((hackathon) => hackathon.status === "ONGOING" && hackathon.daysLeft > 0);
-  }, []);
+type HackathonsViewProps = {
+  hackathons: Hackathon[];
+};
+
+export function HackathonsView({ hackathons }: HackathonsViewProps) {
+  // Un hackathon está vigente mientras su fecha de cierre no haya pasado.
+  const ongoing = hackathons
+    .map((hackathon) => ({ ...hackathon, daysLeft: daysUntil(hackathon.endsAt) }))
+    .filter((hackathon) => hackathon.daysLeft > 0);
 
   return (
     <div className="max-w-6xl">
@@ -17,18 +20,19 @@ export function HackathonsView() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {ongoingHackathons.map((hackathon) => (
+        {ongoing.map((hackathon) => (
           <article
-            key={hackathon.name}
+            key={hackathon.id}
             className="border border-[#484736] bg-[#161616] p-3 flex flex-col aspect-square"
           >
-              <div className="mb-3 flex items-start justify-between gap-3">
+            <div className="mb-3 flex items-start justify-between gap-3">
               <h3 className="text-sm text-[#FFFEF0] font-sans font-medium lowercase leading-tight">{hackathon.name}</h3>
-                <span className="shrink-0 text-[10px] font-mono text-[#F1E65D] px-2 py-1 uppercase">
+              <span className="shrink-0 text-[10px] font-mono text-[#F1E65D] px-2 py-1 uppercase">
                 {hackathon.daysLeft} days left
               </span>
             </div>
 
+            {/* eslint-disable-next-line @next/next/no-img-element -- la ruta la define el admin y puede ser un SVG local o una URL externa */}
             <img
               src={hackathon.image}
               alt={hackathon.name}
@@ -41,9 +45,7 @@ export function HackathonsView() {
                   <MapPin size={13} className="text-[#F1E65D]" />
                   {hackathon.location}
                 </p>
-                <span className="bg-[#10100F] text-[#F1E65D] px-2 py-0.5">
-                  {hackathon.prizePool}
-                </span>
+                <span className="bg-[#10100F] text-[#F1E65D] px-2 py-0.5">{hackathon.prizePool}</span>
               </div>
               <p>{hackathon.sponsor}</p>
             </div>
@@ -54,10 +56,14 @@ export function HackathonsView() {
               rel="noreferrer"
               className="mt-auto border border-[#F1E65D] text-[#F1E65D] text-xs font-mono px-3 py-2 hover:bg-[#F1E65D] hover:text-[#10100F] uppercase tracking-wider transition-colors text-center"
             >
-              ver_hackathon()
+              aplicar()
             </a>
           </article>
         ))}
+
+        {ongoing.length === 0 && (
+          <p className="font-mono text-xs text-[#9D9A72]">no_ongoing_hackathons;</p>
+        )}
       </div>
     </div>
   );
